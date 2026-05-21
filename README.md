@@ -3,10 +3,11 @@
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fprism-api%2Fsdk-rs)
 [![crates.io shield](https://img.shields.io/crates/v/prism)](https://crates.io/crates/prism)
 
-The Prism Rust library provides convenient access to the Prism APIs from Rust.
+The Prism API SDK provides convenient access to the Prism APIs from your favorite programming language.
 
 ## Table of Contents
 
+- [Documentation](#documentation)
 - [Installation](#installation)
 - [Reference](#reference)
 - [Usage](#usage)
@@ -21,13 +22,17 @@ The Prism Rust library provides convenient access to the Prism APIs from Rust.
   - [Additional Query String Parameters](#additional-query-string-parameters)
 - [Contributing](#contributing)
 
+## Documentation
+
+API reference documentation is available [here](https://docs.prismapi.io/api-reference).
+
 ## Installation
 
 Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-prism = "1.3.1"
+prism = "1.3.2"
 ```
 
 Or install via cargo:
