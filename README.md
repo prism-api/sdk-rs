@@ -27,7 +27,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-prism_sdk = "1.2.4"
+prism_sdk = "1.3.0"
 ```
 
 Or install via cargo:
