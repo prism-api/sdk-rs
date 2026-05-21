@@ -5,11 +5,11 @@
   "generatorConfig": {
     "crateName": "prism-sdk",
     "clientClassName": "Client",
-    "enableWebsockets": true
+    "enableWebsockets": false
   },
   "originGitCommit": "d50c0ba8703cfb82fa5a5d8b6a238000644c9167",
   "originGitCommitIsDirty": true,
   "invokedBy": "manual",
-  "requestedVersion": "1.2.2",
-  "sdkVersion": "1.2.2"
+  "requestedVersion": "1.2.3",
+  "sdkVersion": "1.2.3"
 }
