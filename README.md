@@ -1,7 +1,7 @@
 # Prism Rust Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fprism-api%2Fsdk-rs)
-[![crates.io shield](https://img.shields.io/crates/v/prism_sdk)](https://crates.io/crates/prism_sdk)
+[![crates.io shield](https://img.shields.io/crates/v/prism)](https://crates.io/crates/prism)
 
 The Prism Rust library provides convenient access to the Prism APIs from Rust.
 
@@ -27,13 +27,13 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-prism_sdk = "1.3.0"
+prism = "1.3.1"
 ```
 
 Or install via cargo:
 
 ```sh
-cargo add prism_sdk
+cargo add prism
 ```
 
 ## Reference
@@ -45,7 +45,7 @@ A full reference for this library is available [here](https://github.com/prism-a
 Instantiate and use the client with the following:
 
 ```rust
-use prism_sdk::prelude::*;
+use prism::prelude::*;
 
 #[tokio::main]
 async fn main() {
@@ -78,7 +78,7 @@ async fn main() {
 This SDK allows you to configure different environments for API requests.
 
 ```rust
-use prism_sdk::prelude::{*};
+use prism::prelude::{*};
 
 let config = ClientConfig {
     base_url: Environment::Production.url().to_string(),
@@ -110,7 +110,7 @@ match client.solana.dex.get_wallet_profile(None)?.await {
 The SDK exports all request types as Rust structs. Simply import them from the crate to access them:
 
 ```rust
-use prism_sdk::prelude::{*};
+use prism::prelude::{*};
 
 let request = GetWalletProfileDexRequest {
     ...

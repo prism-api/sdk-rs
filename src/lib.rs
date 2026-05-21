@@ -5,7 +5,7 @@
 //! ## Getting Started
 //!
 //! ```rust
-//! use prism_sdk::prelude::*;
+//! use prism::prelude::*;
 //!
 //! #[tokio::main]
 //! async fn main() {
