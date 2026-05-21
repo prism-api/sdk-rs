@@ -74,12 +74,15 @@ impl GetPriceCandlesDexRequestBuilder {
     /// - [`interval`](GetPriceCandlesDexRequestBuilder::interval)
     pub fn build(self) -> Result<GetPriceCandlesDexRequest, BuildError> {
         Ok(GetPriceCandlesDexRequest {
-            token: self.token.ok_or_else(|| BuildError::missing_field("token"))?,
+            token: self
+                .token
+                .ok_or_else(|| BuildError::missing_field("token"))?,
             from: self.from,
             to: self.to,
             count: self.count,
-            interval: self.interval.ok_or_else(|| BuildError::missing_field("interval"))?,
+            interval: self
+                .interval
+                .ok_or_else(|| BuildError::missing_field("interval"))?,
         })
     }
 }
-

@@ -2,27 +2,23 @@
 //!
 //! This module contains client implementations for:
 //!
-//! - **Api**
-//! - **Websocket**
+//! - **Solana**
 
-use crate::{ClientConfig, ApiError};
+use crate::{ApiError, ClientConfig};
 
-pub mod api;
-pub mod websocket;
+pub mod solana;
 pub struct Client {
     pub config: ClientConfig,
-    pub api: ApiClient,
+    pub solana: SolanaClient,
 }
 
 impl Client {
     pub fn new(config: ClientConfig) -> Result<Self, ApiError> {
         Ok(Self {
             config: config.clone(),
-            api: ApiClient::new(config.clone())?
+            solana: SolanaClient::new(config.clone())?,
         })
     }
-
 }
 
-pub use api::ApiClient;
-pub use websocket::WebsocketClient;
+pub use solana::SolanaClient;

@@ -38,9 +38,10 @@ impl GetWalletProfileDexRequestBuilder {
     /// - [`wallet`](GetWalletProfileDexRequestBuilder::wallet)
     pub fn build(self) -> Result<GetWalletProfileDexRequest, BuildError> {
         Ok(GetWalletProfileDexRequest {
-            wallet: self.wallet.ok_or_else(|| BuildError::missing_field("wallet"))?,
+            wallet: self
+                .wallet
+                .ok_or_else(|| BuildError::missing_field("wallet"))?,
             options: self.options,
         })
     }
 }
-

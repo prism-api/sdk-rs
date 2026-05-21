@@ -309,7 +309,10 @@ impl HttpClient {
 
         if let Some(key) = api_key {
             let header_value = key.to_string();
-            headers.insert("X-Api-Key", header_value.parse().map_err(|_| ApiError::InvalidHeader)?);
+            headers.insert(
+                "X-Api-Key",
+                header_value.parse().map_err(|_| ApiError::InvalidHeader)?,
+            );
         }
 
         // Apply bearer token - priority: request options > OAuth > config
@@ -396,10 +399,8 @@ impl HttpClient {
         }
 
         // Parse the token response
-        let token_response: OAuthTokenResponse = response
-            .json()
-            .await
-            .map_err(ApiError::Network)?;
+        let token_response: OAuthTokenResponse =
+            response.json().await.map_err(ApiError::Network)?;
 
         let expires_in = token_response.expires_in.unwrap_or(3600) as u64;
         Ok((token_response.access_token, expires_in))
@@ -450,7 +451,10 @@ impl HttpClient {
 
             match self.client.execute(cloned_request).await {
                 Ok(response) if response.status().is_success() => return Ok(response),
-                Ok(response) if attempt < max_retries && Self::is_retryable_status(response.status().as_u16()) => {
+                Ok(response)
+                    if attempt < max_retries
+                        && Self::is_retryable_status(response.status().as_u16()) =>
+                {
                     // Exponential backoff for retryable HTTP status codes
                     let delay = std::time::Duration::from_millis(100 * 2_u64.pow(attempt));
                     tokio::time::sleep(delay).await;
@@ -517,7 +521,6 @@ impl HttpClient {
             headers,
         })
     }
-
 
     /// Execute a request and return a streaming response (for large file downloads)
     ///
@@ -652,7 +655,6 @@ impl HttpClient {
 
         Ok(ByteStream::new(response))
     }
-
 }
 
 #[cfg(test)]

@@ -55,7 +55,6 @@ async fn main() {
     };
     let client = Client::new(config).expect("Failed to build client");
     client
-        .api
         .solana
         .dex
         .get_wallet_profile(
@@ -93,7 +92,7 @@ let client = Client::new(config).expect("Failed to build client");
 When the API returns a non-success status code (4xx or 5xx response), an error will be returned.
 
 ```rust
-match client.api.solana.dex.get_wallet_profile(None)?.await {
+match client.solana.dex.get_wallet_profile(None)?.await {
     Ok(response) => {
         println!("Success: {:?}", response);
     },
@@ -170,7 +169,7 @@ The `retryStatusCodes` configuration controls which [5XX](https://developer.mozi
 Use the `max_retries` method to configure this behavior.
 
 ```rust
-let response = client.api.solana.dex.get_wallet_profile(
+let response = client.solana.dex.get_wallet_profile(
     Some(RequestOptions::new().max_retries(3))
 )?.await;
 ```
@@ -180,7 +179,7 @@ let response = client.api.solana.dex.get_wallet_profile(
 The SDK defaults to a 30 second timeout. Use the `timeout` method to configure this behavior.
 
 ```rust
-let response = client.api.solana.dex.get_wallet_profile(
+let response = client.solana.dex.get_wallet_profile(
     Some(RequestOptions::new().timeout_seconds(30))
 )?.await;
 ```
@@ -190,7 +189,7 @@ let response = client.api.solana.dex.get_wallet_profile(
 You can add custom headers to requests using `RequestOptions`.
 
 ```rust
-let response = client.api.solana.dex.get_wallet_profile(
+let response = client.solana.dex.get_wallet_profile(
     Some(
         RequestOptions::new()
             .additional_header("X-Custom-Header", "custom-value")
@@ -205,7 +204,7 @@ let response = client.api.solana.dex.get_wallet_profile(
 You can add custom query parameters to requests using `RequestOptions`.
 
 ```rust
-let response = client.api.solana.dex.get_wallet_profile(
+let response = client.solana.dex.get_wallet_profile(
     Some(
         RequestOptions::new()
             .additional_query_param("filter", "active")

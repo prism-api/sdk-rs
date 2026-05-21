@@ -38,9 +38,10 @@ impl GetTokenProfileDexRequestBuilder {
     /// - [`token`](GetTokenProfileDexRequestBuilder::token)
     pub fn build(self) -> Result<GetTokenProfileDexRequest, BuildError> {
         Ok(GetTokenProfileDexRequest {
-            token: self.token.ok_or_else(|| BuildError::missing_field("token"))?,
+            token: self
+                .token
+                .ok_or_else(|| BuildError::missing_field("token"))?,
             options: self.options,
         })
     }
 }
-
