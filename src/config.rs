@@ -30,8 +30,8 @@ impl Default for ClientConfig {
             max_retries: 3,
             custom_headers: HashMap::from([
                 ("X-Fern-Language".to_string(), "Rust".to_string()),
-                ("X-Fern-SDK-Name".to_string(), "prism_rs_sdk".to_string()),
-                ("X-Fern-SDK-Version".to_string(), "1.2.1".to_string()),
+                ("X-Fern-SDK-Name".to_string(), "prism_sdk".to_string()),
+                ("X-Fern-SDK-Version".to_string(), "1.2.2".to_string()),
             ]),
             user_agent: "Api Rust SDK".to_string(),
         }
