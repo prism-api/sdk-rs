@@ -3,13 +3,13 @@
   "generatorName": "fernapi/fern-rust-sdk",
   "generatorVersion": "0.36.0",
   "generatorConfig": {
-    "crateName": "prism",
+    "crateName": "prism-rs-sdk",
     "clientClassName": "Client",
     "enableWebsockets": true
   },
   "originGitCommit": "d50c0ba8703cfb82fa5a5d8b6a238000644c9167",
   "originGitCommitIsDirty": true,
   "invokedBy": "manual",
-  "requestedVersion": "1.2.0",
-  "sdkVersion": "1.2.0"
+  "requestedVersion": "1.2.1",
+  "sdkVersion": "1.2.1"
 }

@@ -27,7 +27,7 @@ Returns a wallet profile for a specific wallet.
 <dd>
 
 ```rust
-use prism::prelude::*;
+use prism_rs_sdk::prelude::*;
 
 #[tokio::main]
 async fn main() {
@@ -115,7 +115,7 @@ Filter, query, and sort wallet profiles based on specified metrics and condition
 <dd>
 
 ```rust
-use prism::prelude::*;
+use prism_rs_sdk::prelude::*;
 
 #[tokio::main]
 async fn main() {
@@ -247,7 +247,7 @@ Returns the profile for a specific token.
 <dd>
 
 ```rust
-use prism::prelude::*;
+use prism_rs_sdk::prelude::*;
 
 #[tokio::main]
 async fn main() {
@@ -336,7 +336,7 @@ Filter, query, and sort token profiles based on specified metrics and conditions
 <dd>
 
 ```rust
-use prism::prelude::*;
+use prism_rs_sdk::prelude::*;
 
 #[tokio::main]
 async fn main() {
@@ -469,7 +469,7 @@ Returns trades for a wallet, token or both.
 <dd>
 
 ```rust
-use prism::prelude::*;
+use prism_rs_sdk::prelude::*;
 
 #[tokio::main]
 async fn main() {
@@ -553,7 +553,7 @@ Returns swaps for a wallet, token or both.
 <dd>
 
 ```rust
-use prism::prelude::*;
+use prism_rs_sdk::prelude::*;
 
 #[tokio::main]
 async fn main() {
@@ -637,7 +637,7 @@ Returns prices for one or more tokens.
 <dd>
 
 ```rust
-use prism::prelude::*;
+use prism_rs_sdk::prelude::*;
 
 #[tokio::main]
 async fn main() {
@@ -711,7 +711,7 @@ Returns price stats for one or more tokens.
 <dd>
 
 ```rust
-use prism::prelude::*;
+use prism_rs_sdk::prelude::*;
 
 #[tokio::main]
 async fn main() {
@@ -785,7 +785,7 @@ Returns price candles for a specific token.
 <dd>
 
 ```rust
-use prism::prelude::*;
+use prism_rs_sdk::prelude::*;
 
 #[tokio::main]
 async fn main() {
@@ -904,7 +904,7 @@ Returns price history for one or more tokens.
 <dd>
 
 ```rust
-use prism::prelude::*;
+use prism_rs_sdk::prelude::*;
 
 #[tokio::main]
 async fn main() {
