@@ -1,7 +1,7 @@
 # Prism Rust Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fprism-api%2Fsdk-rs)
-[![crates.io shield](https://img.shields.io/crates/v/prism)](https://crates.io/crates/prism)
+[![crates.io shield](https://img.shields.io/crates/v/prism_rs_sdk)](https://crates.io/crates/prism_rs_sdk)
 
 The Prism SDKs provide convenient access to the Prism API from your favorite programming language.
 
@@ -32,13 +32,13 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-prism = "1.3.3"
+prism_rs_sdk = "1.3.4"
 ```
 
 Or install via cargo:
 
 ```sh
-cargo add prism
+cargo add prism_rs_sdk
 ```
 
 ## Reference
@@ -50,7 +50,7 @@ A full reference for this library is available [here](https://github.com/prism-a
 Instantiate and use the client with the following:
 
 ```rust
-use prism::prelude::*;
+use prism_rs_sdk::prelude::*;
 
 #[tokio::main]
 async fn main() {
@@ -84,7 +84,7 @@ async fn main() {
 This SDK allows you to configure different environments for API requests.
 
 ```rust
-use prism::prelude::{*};
+use prism_rs_sdk::prelude::{*};
 
 let config = ClientConfig {
     base_url: Environment::Production.url().to_string(),
@@ -116,7 +116,7 @@ match client.api.solana.dex.get_wallet_profile(None)?.await {
 The SDK exports all request types as Rust structs. Simply import them from the crate to access them:
 
 ```rust
-use prism::prelude::{*};
+use prism_rs_sdk::prelude::{*};
 
 let request = GetWalletProfileDexRequest {
     ...
@@ -128,7 +128,7 @@ let request = GetWalletProfileDexRequest {
 The SDK supports WebSocket connections for real-time communication. Use the generated channel clients to connect, send, and receive messages.
 
 ```rust
-use prism::prelude::*;
+use prism_rs_sdk::prelude::*;
 
 let client = Client::new(ClientConfig {
     token: Some("your-api-key".to_string()),
