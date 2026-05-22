@@ -1,1 +1,3 @@
 LICENSE
+src/core/pagination.rs
+src/api/resources/websocket
