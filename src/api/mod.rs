@@ -7,9 +7,12 @@
 //!
 //! - [`resources`] - Service clients and endpoints
 //! - [`types`] - Request, response, and model types
+//! - [`websocket`] - WebSocket channel clients
 
 pub mod resources;
 pub mod types;
+pub mod websocket;
 
-pub use resources::{Client, SolanaClient};
-pub use types::*;
+pub use resources::{ApiClient, WebsocketClient, Client};
+pub use types::{*};
+

@@ -30,9 +30,8 @@ impl GetPriceDexRequestBuilder {
     /// - [`tokens`](GetPriceDexRequestBuilder::tokens)
     pub fn build(self) -> Result<GetPriceDexRequest, BuildError> {
         Ok(GetPriceDexRequest {
-            tokens: self
-                .tokens
-                .ok_or_else(|| BuildError::missing_field("tokens"))?,
+            tokens: self.tokens.ok_or_else(|| BuildError::missing_field("tokens"))?,
         })
     }
 }
+

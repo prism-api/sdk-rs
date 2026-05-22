@@ -1,6 +1,6 @@
 # Reference
-## Solana Dex
-<details><summary><code>client.solana().dex.<a href="/src/api/resources/solana/dex/client.rs">get_wallet_profile</a>(request: GetWalletProfileDexRequest) -> Result&lt;SolanaDexWalletProfile, ApiError&gt;</code></summary>
+## Api Solana Dex
+<details><summary><code>client.api().solana().dex.<a href="/src/api/resources/api/solana/dex/client.rs">get_wallet_profile</a>(request: GetWalletProfileDexRequest) -> Result&lt;SolanaDexWalletProfile, ApiError&gt;</code></summary>
 <dl>
 <dd>
 
@@ -37,6 +37,7 @@ async fn main() {
     };
     let client = Client::new(config).expect("Failed to build client");
     client
+        .api
         .solana
         .dex
         .get_wallet_profile(
@@ -87,7 +88,7 @@ async fn main() {
 </dl>
 </details>
 
-<details><summary><code>client.solana().dex.<a href="/src/api/resources/solana/dex/client.rs">search_wallet_profiles</a>(request: SearchWalletProfilesDexRequest) -> Result&lt;SearchWalletProfilesDexResponse, ApiError&gt;</code></summary>
+<details><summary><code>client.api().solana().dex.<a href="/src/api/resources/api/solana/dex/client.rs">search_wallet_profiles</a>(request: SearchWalletProfilesDexRequest) -> Result&lt;SearchWalletProfilesDexResponse, ApiError&gt;</code></summary>
 <dl>
 <dd>
 
@@ -124,6 +125,7 @@ async fn main() {
     };
     let client = Client::new(config).expect("Failed to build client");
     client
+        .api
         .solana
         .dex
         .search_wallet_profiles(
@@ -218,7 +220,7 @@ async fn main() {
 </dl>
 </details>
 
-<details><summary><code>client.solana().dex.<a href="/src/api/resources/solana/dex/client.rs">get_token_profile</a>(request: GetTokenProfileDexRequest) -> Result&lt;SolanaDexTokenProfile, ApiError&gt;</code></summary>
+<details><summary><code>client.api().solana().dex.<a href="/src/api/resources/api/solana/dex/client.rs">get_token_profile</a>(request: GetTokenProfileDexRequest) -> Result&lt;SolanaDexTokenProfile, ApiError&gt;</code></summary>
 <dl>
 <dd>
 
@@ -255,6 +257,7 @@ async fn main() {
     };
     let client = Client::new(config).expect("Failed to build client");
     client
+        .api
         .solana
         .dex
         .get_token_profile(
@@ -306,7 +309,7 @@ async fn main() {
 </dl>
 </details>
 
-<details><summary><code>client.solana().dex.<a href="/src/api/resources/solana/dex/client.rs">search_token_profiles</a>(request: SearchTokenProfilesDexRequest) -> Result&lt;SearchTokenProfilesDexResponse, ApiError&gt;</code></summary>
+<details><summary><code>client.api().solana().dex.<a href="/src/api/resources/api/solana/dex/client.rs">search_token_profiles</a>(request: SearchTokenProfilesDexRequest) -> Result&lt;SearchTokenProfilesDexResponse, ApiError&gt;</code></summary>
 <dl>
 <dd>
 
@@ -343,6 +346,7 @@ async fn main() {
     };
     let client = Client::new(config).expect("Failed to build client");
     client
+        .api
         .solana
         .dex
         .search_token_profiles(
@@ -438,7 +442,7 @@ async fn main() {
 </dl>
 </details>
 
-<details><summary><code>client.solana().dex.<a href="/src/api/resources/solana/dex/client.rs">get_trades</a>(request: GetTradesDexRequest) -> Result&lt;GetTradesDexResponse, ApiError&gt;</code></summary>
+<details><summary><code>client.api().solana().dex.<a href="/src/api/resources/api/solana/dex/client.rs">get_trades</a>(request: GetTradesDexRequest) -> Result&lt;GetTradesDexResponse, ApiError&gt;</code></summary>
 <dl>
 <dd>
 
@@ -475,6 +479,7 @@ async fn main() {
     };
     let client = Client::new(config).expect("Failed to build client");
     client
+        .api
         .solana
         .dex
         .get_trades(
@@ -521,7 +526,7 @@ async fn main() {
 </dl>
 </details>
 
-<details><summary><code>client.solana().dex.<a href="/src/api/resources/solana/dex/client.rs">get_swaps</a>(request: GetSwapsDexRequest) -> Result&lt;GetSwapsDexResponse, ApiError&gt;</code></summary>
+<details><summary><code>client.api().solana().dex.<a href="/src/api/resources/api/solana/dex/client.rs">get_swaps</a>(request: GetSwapsDexRequest) -> Result&lt;GetSwapsDexResponse, ApiError&gt;</code></summary>
 <dl>
 <dd>
 
@@ -558,6 +563,7 @@ async fn main() {
     };
     let client = Client::new(config).expect("Failed to build client");
     client
+        .api
         .solana
         .dex
         .get_swaps(
@@ -604,7 +610,7 @@ async fn main() {
 </dl>
 </details>
 
-<details><summary><code>client.solana().dex.<a href="/src/api/resources/solana/dex/client.rs">get_price</a>(request: GetPriceDexRequest) -> Result&lt;Vec&lt;SolanaDexPrice&gt;, ApiError&gt;</code></summary>
+<details><summary><code>client.api().solana().dex.<a href="/src/api/resources/api/solana/dex/client.rs">get_price</a>(request: GetPriceDexRequest) -> Result&lt;Vec&lt;SolanaDexPrice&gt;, ApiError&gt;</code></summary>
 <dl>
 <dd>
 
@@ -641,6 +647,7 @@ async fn main() {
     };
     let client = Client::new(config).expect("Failed to build client");
     client
+        .api
         .solana
         .dex
         .get_price(
@@ -677,7 +684,7 @@ async fn main() {
 </dl>
 </details>
 
-<details><summary><code>client.solana().dex.<a href="/src/api/resources/solana/dex/client.rs">get_price_stats</a>(request: GetPriceStatsDexRequest) -> Result&lt;Vec&lt;SolanaDexPriceStats&gt;, ApiError&gt;</code></summary>
+<details><summary><code>client.api().solana().dex.<a href="/src/api/resources/api/solana/dex/client.rs">get_price_stats</a>(request: GetPriceStatsDexRequest) -> Result&lt;Vec&lt;SolanaDexPriceStats&gt;, ApiError&gt;</code></summary>
 <dl>
 <dd>
 
@@ -714,6 +721,7 @@ async fn main() {
     };
     let client = Client::new(config).expect("Failed to build client");
     client
+        .api
         .solana
         .dex
         .get_price_stats(
@@ -750,7 +758,7 @@ async fn main() {
 </dl>
 </details>
 
-<details><summary><code>client.solana().dex.<a href="/src/api/resources/solana/dex/client.rs">get_price_candles</a>(request: GetPriceCandlesDexRequest) -> Result&lt;Vec&lt;SolanaDexPriceCandle&gt;, ApiError&gt;</code></summary>
+<details><summary><code>client.api().solana().dex.<a href="/src/api/resources/api/solana/dex/client.rs">get_price_candles</a>(request: GetPriceCandlesDexRequest) -> Result&lt;Vec&lt;SolanaDexPriceCandle&gt;, ApiError&gt;</code></summary>
 <dl>
 <dd>
 
@@ -787,6 +795,7 @@ async fn main() {
     };
     let client = Client::new(config).expect("Failed to build client");
     client
+        .api
         .solana
         .dex
         .get_price_candles(
@@ -868,7 +877,7 @@ Must be combined with `to`.
 </dl>
 </details>
 
-<details><summary><code>client.solana().dex.<a href="/src/api/resources/solana/dex/client.rs">get_price_history</a>(request: GetPriceHistoryDexRequest) -> Result&lt;Vec&lt;SolanaDexPriceHistory&gt;, ApiError&gt;</code></summary>
+<details><summary><code>client.api().solana().dex.<a href="/src/api/resources/api/solana/dex/client.rs">get_price_history</a>(request: GetPriceHistoryDexRequest) -> Result&lt;Vec&lt;SolanaDexPriceHistory&gt;, ApiError&gt;</code></summary>
 <dl>
 <dd>
 
@@ -905,6 +914,7 @@ async fn main() {
     };
     let client = Client::new(config).expect("Failed to build client");
     client
+        .api
         .solana
         .dex
         .get_price_history(

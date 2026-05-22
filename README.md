@@ -3,7 +3,7 @@
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fprism-api%2Fsdk-rs)
 [![crates.io shield](https://img.shields.io/crates/v/prism)](https://crates.io/crates/prism)
 
-The Prism API SDK provides convenient access to the Prism APIs from your favorite programming language.
+The Prism SDKs provide convenient access to the Prism API from your favorite programming language.
 
 ## Table of Contents
 
@@ -32,7 +32,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-prism = "1.3.2"
+prism = "1.3.3"
 ```
 
 Or install via cargo:
@@ -60,6 +60,7 @@ async fn main() {
     };
     let client = Client::new(config).expect("Failed to build client");
     client
+        .api
         .solana
         .dex
         .get_wallet_profile(
@@ -97,7 +98,7 @@ let client = Client::new(config).expect("Failed to build client");
 When the API returns a non-success status code (4xx or 5xx response), an error will be returned.
 
 ```rust
-match client.solana.dex.get_wallet_profile(None)?.await {
+match client.api.solana.dex.get_wallet_profile(None)?.await {
     Ok(response) => {
         println!("Success: {:?}", response);
     },
@@ -127,7 +128,7 @@ let request = GetWalletProfileDexRequest {
 The SDK supports WebSocket connections for real-time communication. Use the generated channel clients to connect, send, and receive messages.
 
 ```rust
-use prism_sdk::prelude::*;
+use prism::prelude::*;
 
 let client = Client::new(ClientConfig {
     token: Some("your-api-key".to_string()),
@@ -174,7 +175,7 @@ The `retryStatusCodes` configuration controls which [5XX](https://developer.mozi
 Use the `max_retries` method to configure this behavior.
 
 ```rust
-let response = client.solana.dex.get_wallet_profile(
+let response = client.api.solana.dex.get_wallet_profile(
     Some(RequestOptions::new().max_retries(3))
 )?.await;
 ```
@@ -184,7 +185,7 @@ let response = client.solana.dex.get_wallet_profile(
 The SDK defaults to a 30 second timeout. Use the `timeout` method to configure this behavior.
 
 ```rust
-let response = client.solana.dex.get_wallet_profile(
+let response = client.api.solana.dex.get_wallet_profile(
     Some(RequestOptions::new().timeout_seconds(30))
 )?.await;
 ```
@@ -194,7 +195,7 @@ let response = client.solana.dex.get_wallet_profile(
 You can add custom headers to requests using `RequestOptions`.
 
 ```rust
-let response = client.solana.dex.get_wallet_profile(
+let response = client.api.solana.dex.get_wallet_profile(
     Some(
         RequestOptions::new()
             .additional_header("X-Custom-Header", "custom-value")
@@ -209,7 +210,7 @@ let response = client.solana.dex.get_wallet_profile(
 You can add custom query parameters to requests using `RequestOptions`.
 
 ```rust
-let response = client.solana.dex.get_wallet_profile(
+let response = client.api.solana.dex.get_wallet_profile(
     Some(
         RequestOptions::new()
             .additional_query_param("filter", "active")

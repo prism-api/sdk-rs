@@ -62,14 +62,11 @@ impl GetPriceHistoryDexRequestBuilder {
     /// - [`interval`](GetPriceHistoryDexRequestBuilder::interval)
     pub fn build(self) -> Result<GetPriceHistoryDexRequest, BuildError> {
         Ok(GetPriceHistoryDexRequest {
-            tokens: self
-                .tokens
-                .ok_or_else(|| BuildError::missing_field("tokens"))?,
+            tokens: self.tokens.ok_or_else(|| BuildError::missing_field("tokens"))?,
             from: self.from.ok_or_else(|| BuildError::missing_field("from"))?,
             to: self.to,
-            interval: self
-                .interval
-                .ok_or_else(|| BuildError::missing_field("interval"))?,
+            interval: self.interval.ok_or_else(|| BuildError::missing_field("interval"))?,
         })
     }
 }
+
