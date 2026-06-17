@@ -4,10 +4,9 @@ pub use crate::prelude::*;
 pub struct UnsubscribePayload {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub method: Option<SubscriptionMethodEnum>,
+    /// The topics to unsubscribe from. Leave empty to unsubscribe from all topics.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub topic: Option<SubscriptionTopicEnum>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub params: Option<UnsubscribePayloadParams>,
+    pub topics: Option<Vec<SubscriptionTopicEnum>>,
 }
 
 impl UnsubscribePayload {
@@ -20,8 +19,7 @@ impl UnsubscribePayload {
 #[non_exhaustive]
 pub struct UnsubscribePayloadBuilder {
     method: Option<SubscriptionMethodEnum>,
-    topic: Option<SubscriptionTopicEnum>,
-    params: Option<UnsubscribePayloadParams>,
+    topics: Option<Vec<SubscriptionTopicEnum>>,
 }
 
 impl UnsubscribePayloadBuilder {
@@ -30,13 +28,8 @@ impl UnsubscribePayloadBuilder {
         self
     }
 
-    pub fn topic(mut self, value: SubscriptionTopicEnum) -> Self {
-        self.topic = Some(value);
-        self
-    }
-
-    pub fn params(mut self, value: UnsubscribePayloadParams) -> Self {
-        self.params = Some(value);
+    pub fn topics(mut self, value: Vec<SubscriptionTopicEnum>) -> Self {
+        self.topics = Some(value);
         self
     }
 
@@ -44,8 +37,7 @@ impl UnsubscribePayloadBuilder {
     pub fn build(self) -> Result<UnsubscribePayload, BuildError> {
         Ok(UnsubscribePayload {
             method: self.method,
-            topic: self.topic,
-            params: self.params,
+            topics: self.topics,
         })
     }
 }

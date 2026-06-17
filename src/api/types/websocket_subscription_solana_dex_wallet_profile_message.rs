@@ -1,7 +1,7 @@
 pub use crate::prelude::*;
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq)]
-pub struct SolanaDexTokenProfile2 {
+pub struct SolanaDexWalletProfileMessage {
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(default)]
     #[serde(with = "crate::core::flexible_datetime::offset::option")]
@@ -11,42 +11,42 @@ pub struct SolanaDexTokenProfile2 {
     #[serde(with = "crate::core::flexible_datetime::offset::option")]
     pub synced_at: Option<DateTime<FixedOffset>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub token_address: Option<String>,
+    pub wallet_address: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub labels: Option<Vec<SolanaDexTokenProfileLabelEnum2>>,
+    pub labels: Option<Vec<SolanaDexWalletProfileLabelEnum2>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub matched_labels: Option<HashMap<String, Vec<String>>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub dynamic_labels: Option<Vec<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub metadata: Option<SolanaDexTokenProfileMetadata2>,
+    pub metadata: Option<SolanaDexWalletProfileMetadata2>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub market: Option<SolanaDexTokenProfileMarket2>,
+    pub identity: Option<SolanaDexWalletProfileIdentity2>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub metrics: Option<HashMap<String, SolanaDexTokenProfileMetrics2>>,
+    pub metrics: Option<HashMap<String, SolanaDexWalletProfileMetrics2>>,
 }
 
-impl SolanaDexTokenProfile2 {
-    pub fn builder() -> SolanaDexTokenProfile2Builder {
-        <SolanaDexTokenProfile2Builder as Default>::default()
+impl SolanaDexWalletProfileMessage {
+    pub fn builder() -> SolanaDexWalletProfileMessageBuilder {
+        <SolanaDexWalletProfileMessageBuilder as Default>::default()
     }
 }
 
 #[derive(Clone, PartialEq, Default, Debug)]
 #[non_exhaustive]
-pub struct SolanaDexTokenProfile2Builder {
+pub struct SolanaDexWalletProfileMessageBuilder {
     updated_at: Option<DateTime<FixedOffset>>,
     synced_at: Option<DateTime<FixedOffset>>,
-    token_address: Option<String>,
-    labels: Option<Vec<SolanaDexTokenProfileLabelEnum2>>,
+    wallet_address: Option<String>,
+    labels: Option<Vec<SolanaDexWalletProfileLabelEnum2>>,
     matched_labels: Option<HashMap<String, Vec<String>>>,
     dynamic_labels: Option<Vec<String>>,
-    metadata: Option<SolanaDexTokenProfileMetadata2>,
-    market: Option<SolanaDexTokenProfileMarket2>,
-    metrics: Option<HashMap<String, SolanaDexTokenProfileMetrics2>>,
+    metadata: Option<SolanaDexWalletProfileMetadata2>,
+    identity: Option<SolanaDexWalletProfileIdentity2>,
+    metrics: Option<HashMap<String, SolanaDexWalletProfileMetrics2>>,
 }
 
-impl SolanaDexTokenProfile2Builder {
+impl SolanaDexWalletProfileMessageBuilder {
     pub fn updated_at(mut self, value: DateTime<FixedOffset>) -> Self {
         self.updated_at = Some(value);
         self
@@ -57,12 +57,12 @@ impl SolanaDexTokenProfile2Builder {
         self
     }
 
-    pub fn token_address(mut self, value: impl Into<String>) -> Self {
-        self.token_address = Some(value.into());
+    pub fn wallet_address(mut self, value: impl Into<String>) -> Self {
+        self.wallet_address = Some(value.into());
         self
     }
 
-    pub fn labels(mut self, value: Vec<SolanaDexTokenProfileLabelEnum2>) -> Self {
+    pub fn labels(mut self, value: Vec<SolanaDexWalletProfileLabelEnum2>) -> Self {
         self.labels = Some(value);
         self
     }
@@ -77,32 +77,32 @@ impl SolanaDexTokenProfile2Builder {
         self
     }
 
-    pub fn metadata(mut self, value: SolanaDexTokenProfileMetadata2) -> Self {
+    pub fn metadata(mut self, value: SolanaDexWalletProfileMetadata2) -> Self {
         self.metadata = Some(value);
         self
     }
 
-    pub fn market(mut self, value: SolanaDexTokenProfileMarket2) -> Self {
-        self.market = Some(value);
+    pub fn identity(mut self, value: SolanaDexWalletProfileIdentity2) -> Self {
+        self.identity = Some(value);
         self
     }
 
-    pub fn metrics(mut self, value: HashMap<String, SolanaDexTokenProfileMetrics2>) -> Self {
+    pub fn metrics(mut self, value: HashMap<String, SolanaDexWalletProfileMetrics2>) -> Self {
         self.metrics = Some(value);
         self
     }
 
-    /// Consumes the builder and constructs a [`SolanaDexTokenProfile2`].
-    pub fn build(self) -> Result<SolanaDexTokenProfile2, BuildError> {
-        Ok(SolanaDexTokenProfile2 {
+    /// Consumes the builder and constructs a [`SolanaDexWalletProfileMessage`].
+    pub fn build(self) -> Result<SolanaDexWalletProfileMessage, BuildError> {
+        Ok(SolanaDexWalletProfileMessage {
             updated_at: self.updated_at,
             synced_at: self.synced_at,
-            token_address: self.token_address,
+            wallet_address: self.wallet_address,
             labels: self.labels,
             matched_labels: self.matched_labels,
             dynamic_labels: self.dynamic_labels,
             metadata: self.metadata,
-            market: self.market,
+            identity: self.identity,
             metrics: self.metrics,
         })
     }

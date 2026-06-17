@@ -1,7 +1,7 @@
 pub use crate::prelude::*;
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq)]
-pub struct SolanaDexTrade2 {
+pub struct SolanaDexTradeMessage {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub id: Option<i64>,
     /// Refer to [Data Sources](/documentation/solana/dex/overview#data-sources) for the list of supported protocols.
@@ -67,15 +67,15 @@ pub struct SolanaDexTrade2 {
     pub tx_hash: Option<String>,
 }
 
-impl SolanaDexTrade2 {
-    pub fn builder() -> SolanaDexTrade2Builder {
-        <SolanaDexTrade2Builder as Default>::default()
+impl SolanaDexTradeMessage {
+    pub fn builder() -> SolanaDexTradeMessageBuilder {
+        <SolanaDexTradeMessageBuilder as Default>::default()
     }
 }
 
 #[derive(Clone, PartialEq, Default, Debug)]
 #[non_exhaustive]
-pub struct SolanaDexTrade2Builder {
+pub struct SolanaDexTradeMessageBuilder {
     id: Option<i64>,
     protocol: Option<String>,
     swap_type: Option<SolanaDexSwapTypeEnum2>,
@@ -99,7 +99,7 @@ pub struct SolanaDexTrade2Builder {
     tx_hash: Option<String>,
 }
 
-impl SolanaDexTrade2Builder {
+impl SolanaDexTradeMessageBuilder {
     pub fn id(mut self, value: i64) -> Self {
         self.id = Some(value);
         self
@@ -205,9 +205,9 @@ impl SolanaDexTrade2Builder {
         self
     }
 
-    /// Consumes the builder and constructs a [`SolanaDexTrade2`].
-    pub fn build(self) -> Result<SolanaDexTrade2, BuildError> {
-        Ok(SolanaDexTrade2 {
+    /// Consumes the builder and constructs a [`SolanaDexTradeMessage`].
+    pub fn build(self) -> Result<SolanaDexTradeMessage, BuildError> {
+        Ok(SolanaDexTradeMessage {
             id: self.id,
             protocol: self.protocol,
             swap_type: self.swap_type,

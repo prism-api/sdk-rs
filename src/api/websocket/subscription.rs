@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct SubscriptionConnectOptions {
     /// Your Prism API key. You can get one for free in the [Prism Dashboard](https://dashboard.prismapi.io).
-    #[serde(rename = "X-Api-Key")]
+    #[serde(rename = "x-api-key")]
     pub x_api_key: Option<String>,
 }
 #[derive(Debug, Clone, PartialEq, Serialize)]
@@ -64,7 +64,7 @@ impl SubscriptionClient {
             ws_options.headers.insert("Authorization".to_string(), auth.to_string());
         }
         ws_options.query_params = QueryBuilder::new()
-            .string("X-Api-Key", options.x_api_key.clone())
+            .string("x-api-key", options.x_api_key.clone())
             .build()
             .unwrap_or_default();
         let (ws, incoming_rx) = WebSocketClient::connect(&full_url, ws_options).await?;

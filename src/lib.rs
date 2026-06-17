@@ -1,6 +1,6 @@
-//! # Prism Refract API v1 SDK
+//! # Prism API v1 SDK
 //!
-//! The official Rust SDK for the Prism Refract API v1.
+//! The official Rust SDK for the Prism API v1.
 //!
 //! ## Getting Started
 //!
@@ -20,13 +20,13 @@
 //!         .dex
 //!         .get_wallet_profile(
 //!             &GetWalletProfileDexRequest {
-//!                 wallet: "suqh5sHtr8HyJ7q8scBimULPkPpA557prMG47xCHQfK".to_string(),
 //!                 options: Some(SolanaDexWalletProfilePayloadOptions {
 //!                     include_metadata: Some(true),
 //!                     include_labels: Some(true),
 //!                     include_metrics: Some(vec![SolanaDexWalletProfileTimeWindowEnum::Window7D]),
 //!                     ..Default::default()
 //!                 }),
+//!                 ..Default::default()
 //!             },
 //!             None,
 //!         )

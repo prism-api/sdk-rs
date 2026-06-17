@@ -3,7 +3,8 @@ pub use crate::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq, Hash)]
 #[serde(transparent)]
 pub struct SubscribeSolanaDexPricesParams {
-    pub tokens: Option<Vec<String>>,
+    /// The token addresses to filter by. Leave empty to subscribe to all tokens.
+    pub token_addresses: Option<Vec<String>>,
 }
 
 impl SubscribeSolanaDexPricesParams {
@@ -15,19 +16,19 @@ impl SubscribeSolanaDexPricesParams {
 #[derive(Clone, PartialEq, Default, Debug)]
 #[non_exhaustive]
 pub struct SubscribeSolanaDexPricesParamsBuilder {
-    tokens: Option<Vec<String>>,
+    token_addresses: Option<Vec<String>>,
 }
 
 impl SubscribeSolanaDexPricesParamsBuilder {
-    pub fn tokens(mut self, value: Vec<String>) -> Self {
-        self.tokens = Some(value);
+    pub fn token_addresses(mut self, value: Vec<String>) -> Self {
+        self.token_addresses = Some(value);
         self
     }
 
     /// Consumes the builder and constructs a [`SubscribeSolanaDexPricesParams`].
     pub fn build(self) -> Result<SubscribeSolanaDexPricesParams, BuildError> {
         Ok(SubscribeSolanaDexPricesParams {
-            tokens: self.tokens,
+            token_addresses: self.token_addresses,
         })
     }
 }

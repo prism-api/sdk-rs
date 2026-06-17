@@ -9,11 +9,17 @@ pub enum SubscribePayloadParams {
 
         SubscribeSolanaDexTradesParams(SubscribeSolanaDexTradesParams),
 
+        SubscribeSolanaDexPoolsParams(SubscribeSolanaDexPoolsParams),
+
         SubscribeSolanaDexWalletProfilesParams(SubscribeSolanaDexWalletProfilesParams),
 
         SubscribeSolanaDexTokenProfilesParams(SubscribeSolanaDexTokenProfilesParams),
 
         SubscribeSolanaDexPositionProfilesParams(SubscribeSolanaDexPositionProfilesParams),
+
+        SubscribeSolanaAssetsTransfersParams(SubscribeSolanaAssetsTransfersParams),
+
+        SubscribeSolanaAssetsBalanceChangesParams(SubscribeSolanaAssetsBalanceChangesParams),
 }
 
 impl SubscribePayloadParams {
@@ -29,6 +35,10 @@ impl SubscribePayloadParams {
         matches!(self, Self::SubscribeSolanaDexTradesParams(_))
     }
 
+    pub fn is_subscribe_solana_dex_pools_params(&self) -> bool {
+        matches!(self, Self::SubscribeSolanaDexPoolsParams(_))
+    }
+
     pub fn is_subscribe_solana_dex_wallet_profiles_params(&self) -> bool {
         matches!(self, Self::SubscribeSolanaDexWalletProfilesParams(_))
     }
@@ -39,6 +49,14 @@ impl SubscribePayloadParams {
 
     pub fn is_subscribe_solana_dex_position_profiles_params(&self) -> bool {
         matches!(self, Self::SubscribeSolanaDexPositionProfilesParams(_))
+    }
+
+    pub fn is_subscribe_solana_assets_transfers_params(&self) -> bool {
+        matches!(self, Self::SubscribeSolanaAssetsTransfersParams(_))
+    }
+
+    pub fn is_subscribe_solana_assets_balance_changes_params(&self) -> bool {
+        matches!(self, Self::SubscribeSolanaAssetsBalanceChangesParams(_))
     }
 
 
@@ -84,6 +102,20 @@ impl SubscribePayloadParams {
                 }
     }
 
+    pub fn as_subscribe_solana_dex_pools_params(&self) -> Option<&SubscribeSolanaDexPoolsParams> {
+        match self {
+                    Self::SubscribeSolanaDexPoolsParams(value) => Some(value),
+                    _ => None,
+                }
+    }
+
+    pub fn into_subscribe_solana_dex_pools_params(self) -> Option<SubscribeSolanaDexPoolsParams> {
+        match self {
+                    Self::SubscribeSolanaDexPoolsParams(value) => Some(value),
+                    _ => None,
+                }
+    }
+
     pub fn as_subscribe_solana_dex_wallet_profiles_params(&self) -> Option<&SubscribeSolanaDexWalletProfilesParams> {
         match self {
                     Self::SubscribeSolanaDexWalletProfilesParams(value) => Some(value),
@@ -125,6 +157,34 @@ impl SubscribePayloadParams {
                     _ => None,
                 }
     }
+
+    pub fn as_subscribe_solana_assets_transfers_params(&self) -> Option<&SubscribeSolanaAssetsTransfersParams> {
+        match self {
+                    Self::SubscribeSolanaAssetsTransfersParams(value) => Some(value),
+                    _ => None,
+                }
+    }
+
+    pub fn into_subscribe_solana_assets_transfers_params(self) -> Option<SubscribeSolanaAssetsTransfersParams> {
+        match self {
+                    Self::SubscribeSolanaAssetsTransfersParams(value) => Some(value),
+                    _ => None,
+                }
+    }
+
+    pub fn as_subscribe_solana_assets_balance_changes_params(&self) -> Option<&SubscribeSolanaAssetsBalanceChangesParams> {
+        match self {
+                    Self::SubscribeSolanaAssetsBalanceChangesParams(value) => Some(value),
+                    _ => None,
+                }
+    }
+
+    pub fn into_subscribe_solana_assets_balance_changes_params(self) -> Option<SubscribeSolanaAssetsBalanceChangesParams> {
+        match self {
+                    Self::SubscribeSolanaAssetsBalanceChangesParams(value) => Some(value),
+                    _ => None,
+                }
+    }
 }
 
 impl fmt::Display for SubscribePayloadParams {
@@ -133,9 +193,12 @@ impl fmt::Display for SubscribePayloadParams {
             Self::SubscribeSolanaDexPricesParams(value) => write!(f, "{}", serde_json::to_string(value).unwrap_or_else(|_| format!("{:?}", value))),
             Self::SubscribeSolanaDexSwapsParams(value) => write!(f, "{}", serde_json::to_string(value).unwrap_or_else(|_| format!("{:?}", value))),
             Self::SubscribeSolanaDexTradesParams(value) => write!(f, "{}", serde_json::to_string(value).unwrap_or_else(|_| format!("{:?}", value))),
+            Self::SubscribeSolanaDexPoolsParams(value) => write!(f, "{}", serde_json::to_string(value).unwrap_or_else(|_| format!("{:?}", value))),
             Self::SubscribeSolanaDexWalletProfilesParams(value) => write!(f, "{}", serde_json::to_string(value).unwrap_or_else(|_| format!("{:?}", value))),
             Self::SubscribeSolanaDexTokenProfilesParams(value) => write!(f, "{}", serde_json::to_string(value).unwrap_or_else(|_| format!("{:?}", value))),
             Self::SubscribeSolanaDexPositionProfilesParams(value) => write!(f, "{}", serde_json::to_string(value).unwrap_or_else(|_| format!("{:?}", value))),
+            Self::SubscribeSolanaAssetsTransfersParams(value) => write!(f, "{}", serde_json::to_string(value).unwrap_or_else(|_| format!("{:?}", value))),
+            Self::SubscribeSolanaAssetsBalanceChangesParams(value) => write!(f, "{}", serde_json::to_string(value).unwrap_or_else(|_| format!("{:?}", value))),
         }
     }
 }

@@ -1,4 +1,4 @@
-//! API client and types for the Prism Refract API v1
+//! API client and types for the Prism API v1
 //!
 //! This module contains all the API definitions including request/response types
 //! and client implementations for interacting with the API.

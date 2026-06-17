@@ -1,7 +1,7 @@
 pub use crate::prelude::*;
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq)]
-pub struct SolanaDexPrice2 {
+pub struct SolanaDexPriceMessage {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub token_address: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -16,22 +16,22 @@ pub struct SolanaDexPrice2 {
     pub block_time: Option<DateTime<FixedOffset>>,
 }
 
-impl SolanaDexPrice2 {
-    pub fn builder() -> SolanaDexPrice2Builder {
-        <SolanaDexPrice2Builder as Default>::default()
+impl SolanaDexPriceMessage {
+    pub fn builder() -> SolanaDexPriceMessageBuilder {
+        <SolanaDexPriceMessageBuilder as Default>::default()
     }
 }
 
 #[derive(Clone, PartialEq, Default, Debug)]
 #[non_exhaustive]
-pub struct SolanaDexPrice2Builder {
+pub struct SolanaDexPriceMessageBuilder {
     token_address: Option<String>,
     usd_price: Option<f64>,
     block_slot: Option<i64>,
     block_time: Option<DateTime<FixedOffset>>,
 }
 
-impl SolanaDexPrice2Builder {
+impl SolanaDexPriceMessageBuilder {
     pub fn token_address(mut self, value: impl Into<String>) -> Self {
         self.token_address = Some(value.into());
         self
@@ -52,9 +52,9 @@ impl SolanaDexPrice2Builder {
         self
     }
 
-    /// Consumes the builder and constructs a [`SolanaDexPrice2`].
-    pub fn build(self) -> Result<SolanaDexPrice2, BuildError> {
-        Ok(SolanaDexPrice2 {
+    /// Consumes the builder and constructs a [`SolanaDexPriceMessage`].
+    pub fn build(self) -> Result<SolanaDexPriceMessage, BuildError> {
+        Ok(SolanaDexPriceMessage {
             token_address: self.token_address,
             usd_price: self.usd_price,
             block_slot: self.block_slot,

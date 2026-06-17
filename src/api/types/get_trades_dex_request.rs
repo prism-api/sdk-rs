@@ -4,10 +4,10 @@ pub use crate::prelude::*;
 pub struct GetTradesDexRequest {
     /// Wallet address to filter trades by. When combined with `token`, returns only trades for that wallet on that token.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub wallet: Option<String>,
+    pub wallet_address: Option<String>,
     /// Token address to filter trades by. When combined with `wallet`, returns only trades for that wallet on that token.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub token: Option<String>,
+    pub token_address: Option<String>,
     /// Maximum number of results to return in a single page.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub limit: Option<i64>,
@@ -25,20 +25,20 @@ impl GetTradesDexRequest {
 #[derive(Clone, PartialEq, Default, Debug)]
 #[non_exhaustive]
 pub struct GetTradesDexRequestBuilder {
-    wallet: Option<String>,
-    token: Option<String>,
+    wallet_address: Option<String>,
+    token_address: Option<String>,
     limit: Option<i64>,
     cursor: Option<String>,
 }
 
 impl GetTradesDexRequestBuilder {
-    pub fn wallet(mut self, value: impl Into<String>) -> Self {
-        self.wallet = Some(value.into());
+    pub fn wallet_address(mut self, value: impl Into<String>) -> Self {
+        self.wallet_address = Some(value.into());
         self
     }
 
-    pub fn token(mut self, value: impl Into<String>) -> Self {
-        self.token = Some(value.into());
+    pub fn token_address(mut self, value: impl Into<String>) -> Self {
+        self.token_address = Some(value.into());
         self
     }
 
@@ -55,8 +55,8 @@ impl GetTradesDexRequestBuilder {
     /// Consumes the builder and constructs a [`GetTradesDexRequest`].
     pub fn build(self) -> Result<GetTradesDexRequest, BuildError> {
         Ok(GetTradesDexRequest {
-            wallet: self.wallet,
-            token: self.token,
+            wallet_address: self.wallet_address,
+            token_address: self.token_address,
             limit: self.limit,
             cursor: self.cursor,
         })

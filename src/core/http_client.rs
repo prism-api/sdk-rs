@@ -309,7 +309,7 @@ impl HttpClient {
 
         if let Some(key) = api_key {
             let header_value = key.to_string();
-            headers.insert("X-Api-Key", header_value.parse().map_err(|_| ApiError::InvalidHeader)?);
+            headers.insert("x-api-key", header_value.parse().map_err(|_| ApiError::InvalidHeader)?);
         }
 
         // Apply bearer token - priority: request options > OAuth > config

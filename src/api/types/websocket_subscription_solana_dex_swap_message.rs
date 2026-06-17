@@ -1,7 +1,7 @@
 pub use crate::prelude::*;
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq)]
-pub struct SolanaDexSwap2 {
+pub struct SolanaDexSwapMessage {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub id: Option<i64>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -65,15 +65,15 @@ pub struct SolanaDexSwap2 {
     pub tx_hash: Option<String>,
 }
 
-impl SolanaDexSwap2 {
-    pub fn builder() -> SolanaDexSwap2Builder {
-        <SolanaDexSwap2Builder as Default>::default()
+impl SolanaDexSwapMessage {
+    pub fn builder() -> SolanaDexSwapMessageBuilder {
+        <SolanaDexSwapMessageBuilder as Default>::default()
     }
 }
 
 #[derive(Clone, PartialEq, Default, Debug)]
 #[non_exhaustive]
-pub struct SolanaDexSwap2Builder {
+pub struct SolanaDexSwapMessageBuilder {
     id: Option<i64>,
     swap_type: Option<SolanaDexSwapTypeEnum2>,
     protocol: Option<String>,
@@ -95,7 +95,7 @@ pub struct SolanaDexSwap2Builder {
     tx_hash: Option<String>,
 }
 
-impl SolanaDexSwap2Builder {
+impl SolanaDexSwapMessageBuilder {
     pub fn id(mut self, value: i64) -> Self {
         self.id = Some(value);
         self
@@ -191,9 +191,9 @@ impl SolanaDexSwap2Builder {
         self
     }
 
-    /// Consumes the builder and constructs a [`SolanaDexSwap2`].
-    pub fn build(self) -> Result<SolanaDexSwap2, BuildError> {
-        Ok(SolanaDexSwap2 {
+    /// Consumes the builder and constructs a [`SolanaDexSwapMessage`].
+    pub fn build(self) -> Result<SolanaDexSwapMessage, BuildError> {
+        Ok(SolanaDexSwapMessage {
             id: self.id,
             swap_type: self.swap_type,
             protocol: self.protocol,

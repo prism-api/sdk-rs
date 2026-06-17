@@ -3,8 +3,8 @@ pub use crate::prelude::*;
 #[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq, Hash)]
 pub struct GetPriceCandlesDexRequest {
     /// Token address to retrieve price candles for.
-    #[serde(default)]
-    pub token: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub token_address: Option<String>,
     /// Start of the candle range, as a date-time RFC3339 string.
     /// Must be combined with `to` to define a bounded range.
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -35,7 +35,7 @@ impl GetPriceCandlesDexRequest {
 #[derive(Clone, PartialEq, Default, Debug)]
 #[non_exhaustive]
 pub struct GetPriceCandlesDexRequestBuilder {
-    token: Option<String>,
+    token_address: Option<String>,
     from: Option<DateTime<FixedOffset>>,
     to: Option<DateTime<FixedOffset>>,
     count: Option<i64>,
@@ -43,8 +43,8 @@ pub struct GetPriceCandlesDexRequestBuilder {
 }
 
 impl GetPriceCandlesDexRequestBuilder {
-    pub fn token(mut self, value: impl Into<String>) -> Self {
-        self.token = Some(value.into());
+    pub fn token_address(mut self, value: impl Into<String>) -> Self {
+        self.token_address = Some(value.into());
         self
     }
 
@@ -70,11 +70,10 @@ impl GetPriceCandlesDexRequestBuilder {
 
     /// Consumes the builder and constructs a [`GetPriceCandlesDexRequest`].
     /// This method will fail if any of the following fields are not set:
-    /// - [`token`](GetPriceCandlesDexRequestBuilder::token)
     /// - [`interval`](GetPriceCandlesDexRequestBuilder::interval)
     pub fn build(self) -> Result<GetPriceCandlesDexRequest, BuildError> {
         Ok(GetPriceCandlesDexRequest {
-            token: self.token.ok_or_else(|| BuildError::missing_field("token"))?,
+            token_address: self.token_address,
             from: self.from,
             to: self.to,
             count: self.count,
