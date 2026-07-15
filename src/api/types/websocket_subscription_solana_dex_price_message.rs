@@ -5,6 +5,8 @@ pub struct SolanaDexPriceMessage {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub token_address: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub pool_address: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(default)]
     #[serde(with = "crate::core::number_serializers::option")]
     pub usd_price: Option<f64>,
@@ -26,6 +28,7 @@ impl SolanaDexPriceMessage {
 #[non_exhaustive]
 pub struct SolanaDexPriceMessageBuilder {
     token_address: Option<String>,
+    pool_address: Option<String>,
     usd_price: Option<f64>,
     block_slot: Option<i64>,
     block_time: Option<DateTime<FixedOffset>>,
@@ -34,6 +37,11 @@ pub struct SolanaDexPriceMessageBuilder {
 impl SolanaDexPriceMessageBuilder {
     pub fn token_address(mut self, value: impl Into<String>) -> Self {
         self.token_address = Some(value.into());
+        self
+    }
+
+    pub fn pool_address(mut self, value: impl Into<String>) -> Self {
+        self.pool_address = Some(value.into());
         self
     }
 
@@ -56,6 +64,7 @@ impl SolanaDexPriceMessageBuilder {
     pub fn build(self) -> Result<SolanaDexPriceMessage, BuildError> {
         Ok(SolanaDexPriceMessage {
             token_address: self.token_address,
+            pool_address: self.pool_address,
             usd_price: self.usd_price,
             block_slot: self.block_slot,
             block_time: self.block_time,

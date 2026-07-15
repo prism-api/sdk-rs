@@ -2,23 +2,26 @@ pub use crate::prelude::*;
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq, Hash)]
 pub struct GetPriceCandlesDexRequest {
-    /// Token address to retrieve price candles for.
+    /// Token address to filter by.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub token_address: Option<String>,
+    pub token: Option<String>,
+    /// Pool address to filter by.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pool: Option<String>,
     /// Start of the candle range, as a date-time RFC3339 string.
-    /// Must be combined with `to` to define a bounded range.
+    /// Can be combined with `to` to define a bounded range.
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(default)]
     #[serde(with = "crate::core::flexible_datetime::offset::option")]
     pub from: Option<DateTime<FixedOffset>>,
-    /// End of the candle range, as a date-time RFC3339 string. Defaults to the current time.
-    /// Must be combined with either `from` (to define a bounded range) or `count` (to return the N most recent candles ending at `to`).
+    /// End of the candle range, as a date-time RFC3339 string.
+    /// Defaults to the current time.
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(default)]
     #[serde(with = "crate::core::flexible_datetime::offset::option")]
     pub to: Option<DateTime<FixedOffset>>,
-    /// Number of candles to return, ending at `to`.
-    /// Must be combined with `to`.
+    /// Number of candles to return.
+    /// Must be combined with `from` or `to`.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub count: Option<i64>,
     /// Sampling interval between data points, in seconds.
@@ -35,7 +38,8 @@ impl GetPriceCandlesDexRequest {
 #[derive(Clone, PartialEq, Default, Debug)]
 #[non_exhaustive]
 pub struct GetPriceCandlesDexRequestBuilder {
-    token_address: Option<String>,
+    token: Option<String>,
+    pool: Option<String>,
     from: Option<DateTime<FixedOffset>>,
     to: Option<DateTime<FixedOffset>>,
     count: Option<i64>,
@@ -43,8 +47,13 @@ pub struct GetPriceCandlesDexRequestBuilder {
 }
 
 impl GetPriceCandlesDexRequestBuilder {
-    pub fn token_address(mut self, value: impl Into<String>) -> Self {
-        self.token_address = Some(value.into());
+    pub fn token(mut self, value: impl Into<String>) -> Self {
+        self.token = Some(value.into());
+        self
+    }
+
+    pub fn pool(mut self, value: impl Into<String>) -> Self {
+        self.pool = Some(value.into());
         self
     }
 
@@ -73,7 +82,8 @@ impl GetPriceCandlesDexRequestBuilder {
     /// - [`interval`](GetPriceCandlesDexRequestBuilder::interval)
     pub fn build(self) -> Result<GetPriceCandlesDexRequest, BuildError> {
         Ok(GetPriceCandlesDexRequest {
-            token_address: self.token_address,
+            token: self.token,
+            pool: self.pool,
             from: self.from,
             to: self.to,
             count: self.count,

@@ -5,6 +5,8 @@ pub struct SolanaDexPriceStats {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub token_address: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub pool_address: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(default)]
     #[serde(with = "crate::core::number_serializers::option")]
     pub usd_price: Option<f64>,
@@ -131,6 +133,7 @@ impl SolanaDexPriceStats {
 #[non_exhaustive]
 pub struct SolanaDexPriceStatsBuilder {
     token_address: Option<String>,
+    pool_address: Option<String>,
     usd_price: Option<f64>,
     usd_price_change5m: Option<f64>,
     usd_price_change1h: Option<f64>,
@@ -160,6 +163,11 @@ pub struct SolanaDexPriceStatsBuilder {
 impl SolanaDexPriceStatsBuilder {
     pub fn token_address(mut self, value: impl Into<String>) -> Self {
         self.token_address = Some(value.into());
+        self
+    }
+
+    pub fn pool_address(mut self, value: impl Into<String>) -> Self {
+        self.pool_address = Some(value.into());
         self
     }
 
@@ -287,6 +295,7 @@ impl SolanaDexPriceStatsBuilder {
     pub fn build(self) -> Result<SolanaDexPriceStats, BuildError> {
         Ok(SolanaDexPriceStats {
             token_address: self.token_address,
+            pool_address: self.pool_address,
             usd_price: self.usd_price,
             usd_price_change5m: self.usd_price_change5m,
             usd_price_change1h: self.usd_price_change1h,

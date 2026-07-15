@@ -2,9 +2,12 @@ pub use crate::prelude::*;
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq, Hash)]
 pub struct GetPriceDexRequest {
-    /// Token addresses to retrieve the latest prices for. Accepts between 1 and 1000 tokens per request.
-    #[serde(default)]
-    pub tokens: Vec<String>,
+    /// Token addresses to retrieve the latest prices for.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tokens: Option<Vec<String>>,
+    /// Pool addresses to retrieve the latest prices for.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pools: Option<Vec<String>>,
 }
 
 impl GetPriceDexRequest {
@@ -17,6 +20,7 @@ impl GetPriceDexRequest {
 #[non_exhaustive]
 pub struct GetPriceDexRequestBuilder {
     tokens: Option<Vec<String>>,
+    pools: Option<Vec<String>>,
 }
 
 impl GetPriceDexRequestBuilder {
@@ -25,12 +29,16 @@ impl GetPriceDexRequestBuilder {
         self
     }
 
+    pub fn pools(mut self, value: Vec<String>) -> Self {
+        self.pools = Some(value);
+        self
+    }
+
     /// Consumes the builder and constructs a [`GetPriceDexRequest`].
-    /// This method will fail if any of the following fields are not set:
-    /// - [`tokens`](GetPriceDexRequestBuilder::tokens)
     pub fn build(self) -> Result<GetPriceDexRequest, BuildError> {
         Ok(GetPriceDexRequest {
-            tokens: self.tokens.ok_or_else(|| BuildError::missing_field("tokens"))?,
+            tokens: self.tokens,
+            pools: self.pools,
         })
     }
 }

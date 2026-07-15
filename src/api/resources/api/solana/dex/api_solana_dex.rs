@@ -89,7 +89,7 @@ impl DexClient {
         ).await
     }
 
-    /// Returns trades for a wallet, token or both.
+    /// Returns trades for a combination of wallet, token and/or pool.
     ///
     /// # Arguments
     ///
@@ -108,7 +108,7 @@ impl DexClient {
         ).await
     }
 
-    /// Returns swaps for a wallet, token or both.
+    /// Returns swaps for a combination of wallet, token and/or pool.
     ///
     /// # Arguments
     ///
@@ -127,7 +127,7 @@ impl DexClient {
         ).await
     }
 
-    /// Returns prices for one or more tokens.
+    /// Returns prices for one or more tokens or pools.
     ///
     /// # Arguments
     ///
@@ -146,7 +146,7 @@ impl DexClient {
         ).await
     }
 
-    /// Returns price stats for one or more tokens.
+    /// Returns price stats for one or more tokens or pools.
     ///
     /// # Arguments
     ///
@@ -165,7 +165,7 @@ impl DexClient {
         ).await
     }
 
-    /// Returns price candles for a specific token.
+    /// Returns price candles for a specific token and/or pool.
     ///
     /// # Arguments
     ///
@@ -184,7 +184,7 @@ impl DexClient {
         ).await
     }
 
-    /// Returns price history for one or more tokens.
+    /// Returns price history for one or more tokens or pools.
     ///
     /// # Arguments
     ///

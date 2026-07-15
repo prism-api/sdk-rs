@@ -12,6 +12,8 @@ pub struct SolanaDexSwapMessage {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub wallet_address: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub pool_address: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub token_address_in: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub token_address_out: Option<String>,
@@ -78,6 +80,7 @@ pub struct SolanaDexSwapMessageBuilder {
     swap_type: Option<SolanaDexSwapTypeEnum2>,
     protocol: Option<String>,
     wallet_address: Option<String>,
+    pool_address: Option<String>,
     token_address_in: Option<String>,
     token_address_out: Option<String>,
     token_amount_in: Option<f64>,
@@ -113,6 +116,11 @@ impl SolanaDexSwapMessageBuilder {
 
     pub fn wallet_address(mut self, value: impl Into<String>) -> Self {
         self.wallet_address = Some(value.into());
+        self
+    }
+
+    pub fn pool_address(mut self, value: impl Into<String>) -> Self {
+        self.pool_address = Some(value.into());
         self
     }
 
@@ -198,6 +206,7 @@ impl SolanaDexSwapMessageBuilder {
             swap_type: self.swap_type,
             protocol: self.protocol,
             wallet_address: self.wallet_address,
+            pool_address: self.pool_address,
             token_address_in: self.token_address_in,
             token_address_out: self.token_address_out,
             token_amount_in: self.token_amount_in,

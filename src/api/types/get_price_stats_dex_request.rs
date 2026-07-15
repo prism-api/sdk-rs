@@ -2,9 +2,12 @@ pub use crate::prelude::*;
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default, PartialEq, Eq, Hash)]
 pub struct GetPriceStatsDexRequest {
-    /// Token addresses to retrieve price statistics for. Accepts between 1 and 1000 tokens per request.
-    #[serde(default)]
-    pub tokens: Vec<String>,
+    /// Token addresses to retrieve price statistics for.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tokens: Option<Vec<String>>,
+    /// Pool addresses to retrieve price statistics for.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pools: Option<Vec<String>>,
 }
 
 impl GetPriceStatsDexRequest {
@@ -17,6 +20,7 @@ impl GetPriceStatsDexRequest {
 #[non_exhaustive]
 pub struct GetPriceStatsDexRequestBuilder {
     tokens: Option<Vec<String>>,
+    pools: Option<Vec<String>>,
 }
 
 impl GetPriceStatsDexRequestBuilder {
@@ -25,12 +29,16 @@ impl GetPriceStatsDexRequestBuilder {
         self
     }
 
+    pub fn pools(mut self, value: Vec<String>) -> Self {
+        self.pools = Some(value);
+        self
+    }
+
     /// Consumes the builder and constructs a [`GetPriceStatsDexRequest`].
-    /// This method will fail if any of the following fields are not set:
-    /// - [`tokens`](GetPriceStatsDexRequestBuilder::tokens)
     pub fn build(self) -> Result<GetPriceStatsDexRequest, BuildError> {
         Ok(GetPriceStatsDexRequest {
-            tokens: self.tokens.ok_or_else(|| BuildError::missing_field("tokens"))?,
+            tokens: self.tokens,
+            pools: self.pools,
         })
     }
 }

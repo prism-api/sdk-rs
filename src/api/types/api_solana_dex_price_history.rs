@@ -5,6 +5,8 @@ pub struct SolanaDexPriceHistory {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub token_address: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub pool_address: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub prices: Option<Vec<SolanaDexPriceSnapshot>>,
 }
 
@@ -18,12 +20,18 @@ impl SolanaDexPriceHistory {
 #[non_exhaustive]
 pub struct SolanaDexPriceHistoryBuilder {
     token_address: Option<String>,
+    pool_address: Option<String>,
     prices: Option<Vec<SolanaDexPriceSnapshot>>,
 }
 
 impl SolanaDexPriceHistoryBuilder {
     pub fn token_address(mut self, value: impl Into<String>) -> Self {
         self.token_address = Some(value.into());
+        self
+    }
+
+    pub fn pool_address(mut self, value: impl Into<String>) -> Self {
+        self.pool_address = Some(value.into());
         self
     }
 
@@ -36,6 +44,7 @@ impl SolanaDexPriceHistoryBuilder {
     pub fn build(self) -> Result<SolanaDexPriceHistory, BuildError> {
         Ok(SolanaDexPriceHistory {
             token_address: self.token_address,
+            pool_address: self.pool_address,
             prices: self.prices,
         })
     }

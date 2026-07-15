@@ -8,9 +8,9 @@
     "enableWebsockets": true,
     "generateWebSocketClients": true
   },
-  "originGitCommit": "855602fac765bc98c52efddb850d9fe23d593a6d",
+  "originGitCommit": "ba25c5ac694ffddfc76483df2299a67d85f24c8f",
   "originGitCommitIsDirty": false,
   "invokedBy": "manual",
-  "requestedVersion": "0.4.0",
-  "sdkVersion": "0.4.0"
+  "requestedVersion": "0.4.1",
+  "sdkVersion": "0.4.1"
 }

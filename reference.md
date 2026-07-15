@@ -42,13 +42,13 @@ async fn main() {
         .dex
         .get_wallet_profile(
             &GetWalletProfileDexRequest {
+                wallet: "suqh5sHtr8HyJ7q8scBimULPkPpA557prMG47xCHQfK".to_string(),
                 options: Some(SolanaDexWalletProfilePayloadOptions {
                     include_metadata: Some(true),
                     include_labels: Some(true),
                     include_metrics: Some(vec![SolanaDexWalletProfileTimeWindowEnum::Window7D]),
                     ..Default::default()
                 }),
-                ..Default::default()
             },
             None,
         )
@@ -68,7 +68,7 @@ async fn main() {
 <dl>
 <dd>
 
-**wallet_address:** `Option<String>` — Wallet address to retrieve the profile for.
+**wallet:** `String` — Wallet address to retrieve the profile for.
     
 </dd>
 </dl>
@@ -262,6 +262,7 @@ async fn main() {
         .dex
         .get_token_profile(
             &GetTokenProfileDexRequest {
+                token: "Z4d9YXR4pSkdKcu9UBcwxHp7i32buzdDtAR1b1Gbonk".to_string(),
                 options: Some(SolanaDexTokenProfilePayloadOptions {
                     include_metadata: Some(true),
                     include_market: Some(true),
@@ -269,7 +270,6 @@ async fn main() {
                     include_metrics: Some(vec![SolanaDexTokenProfileTimeWindowEnum::Window7D]),
                     ..Default::default()
                 }),
-                ..Default::default()
             },
             None,
         )
@@ -289,7 +289,7 @@ async fn main() {
 <dl>
 <dd>
 
-**token_address:** `Option<String>` — Token address to retrieve the profile for.
+**token:** `String` — Token address to retrieve the profile for.
     
 </dd>
 </dl>
@@ -454,7 +454,7 @@ async fn main() {
 <dl>
 <dd>
 
-Returns trades for a wallet, token or both.
+Returns trades for a combination of wallet, token and/or pool.
 </dd>
 </dl>
 </dd>
@@ -485,6 +485,7 @@ async fn main() {
         .get_trades(
             &GetTradesDexRequest {
                 limit: Some(20),
+                wallet: Some("suqh5sHtr8HyJ7q8scBimULPkPpA557prMG47xCHQfK".to_string()),
                 ..Default::default()
             },
             None,
@@ -505,7 +506,7 @@ async fn main() {
 <dl>
 <dd>
 
-**wallet_address:** `Option<String>` — Wallet address to filter trades by. When combined with `token`, returns only trades for that wallet on that token.
+**wallet:** `Option<String>` — Wallet address to filter trades by.
     
 </dd>
 </dl>
@@ -513,7 +514,7 @@ async fn main() {
 <dl>
 <dd>
 
-**token_address:** `Option<String>` — Token address to filter trades by. When combined with `wallet`, returns only trades for that wallet on that token.
+**token:** `Option<String>` — Token address to filter trades by.
     
 </dd>
 </dl>
@@ -537,7 +538,7 @@ async fn main() {
 <dl>
 <dd>
 
-Returns swaps for a wallet, token or both.
+Returns swaps for a combination of wallet, token and/or pool.
 </dd>
 </dl>
 </dd>
@@ -568,6 +569,7 @@ async fn main() {
         .get_swaps(
             &GetSwapsDexRequest {
                 limit: Some(20),
+                wallet: Some("suqh5sHtr8HyJ7q8scBimULPkPpA557prMG47xCHQfK".to_string()),
                 ..Default::default()
             },
             None,
@@ -588,7 +590,7 @@ async fn main() {
 <dl>
 <dd>
 
-**wallet_address:** `Option<String>` — Wallet address to filter swaps by. When combined with `token`, returns only swaps for that wallet on that token.
+**wallet:** `Option<String>` — Wallet address to filter swaps by.
     
 </dd>
 </dl>
@@ -596,7 +598,15 @@ async fn main() {
 <dl>
 <dd>
 
-**token_address:** `Option<String>` — Token address to filter swaps by. When combined with `wallet`, returns only swaps for that wallet on that token.
+**token:** `Option<String>` — Token address to filter swaps by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pool:** `Option<String>` — Pool address to filter swaps by.
     
 </dd>
 </dl>
@@ -620,7 +630,7 @@ async fn main() {
 <dl>
 <dd>
 
-Returns prices for one or more tokens.
+Returns prices for one or more tokens or pools.
 </dd>
 </dl>
 </dd>
@@ -650,7 +660,10 @@ async fn main() {
         .dex
         .get_price(
             &GetPriceDexRequest {
-                tokens: vec!["Z4d9YXR4pSkdKcu9UBcwxHp7i32buzdDtAR1b1Gbonk".to_string()],
+                tokens: Some(vec![
+                    "Z4d9YXR4pSkdKcu9UBcwxHp7i32buzdDtAR1b1Gbonk".to_string()
+                ]),
+                ..Default::default()
             },
             None,
         )
@@ -670,7 +683,15 @@ async fn main() {
 <dl>
 <dd>
 
-**tokens:** `Vec<String>` — Token addresses to retrieve the latest prices for. Accepts between 1 and 1000 tokens per request.
+**tokens:** `Option<Vec<String>>` — Token addresses to retrieve the latest prices for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pools:** `Option<Vec<String>>` — Pool addresses to retrieve the latest prices for.
     
 </dd>
 </dl>
@@ -694,7 +715,7 @@ async fn main() {
 <dl>
 <dd>
 
-Returns price stats for one or more tokens.
+Returns price stats for one or more tokens or pools.
 </dd>
 </dl>
 </dd>
@@ -724,7 +745,10 @@ async fn main() {
         .dex
         .get_price_stats(
             &GetPriceStatsDexRequest {
-                tokens: vec!["Z4d9YXR4pSkdKcu9UBcwxHp7i32buzdDtAR1b1Gbonk".to_string()],
+                tokens: Some(vec![
+                    "Z4d9YXR4pSkdKcu9UBcwxHp7i32buzdDtAR1b1Gbonk".to_string()
+                ]),
+                ..Default::default()
             },
             None,
         )
@@ -744,7 +768,15 @@ async fn main() {
 <dl>
 <dd>
 
-**tokens:** `Vec<String>` — Token addresses to retrieve price statistics for. Accepts between 1 and 1000 tokens per request.
+**tokens:** `Option<Vec<String>>` — Token addresses to retrieve price statistics for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pools:** `Option<Vec<String>>` — Pool addresses to retrieve price statistics for.
     
 </dd>
 </dl>
@@ -768,7 +800,7 @@ async fn main() {
 <dl>
 <dd>
 
-Returns price candles for a specific token.
+Returns price candles for a specific token and/or pool.
 </dd>
 </dl>
 </dd>
@@ -798,10 +830,11 @@ async fn main() {
         .dex
         .get_price_candles(
             &GetPriceCandlesDexRequest {
+                token: Some("Z4d9YXR4pSkdKcu9UBcwxHp7i32buzdDtAR1b1Gbonk".to_string()),
                 from: Some(DateTime::parse_from_rfc3339("2026-04-27T00:00:00Z").unwrap()),
                 to: Some(DateTime::parse_from_rfc3339("2026-04-27T01:00:00Z").unwrap()),
                 interval: 60,
-                token_address: None,
+                pool: None,
                 count: None,
             },
             None,
@@ -822,7 +855,15 @@ async fn main() {
 <dl>
 <dd>
 
-**token_address:** `Option<String>` — Token address to retrieve price candles for.
+**token:** `Option<String>` — Token address to filter by.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pool:** `Option<String>` — Pool address to filter by.
     
 </dd>
 </dl>
@@ -833,7 +874,7 @@ async fn main() {
 **from:** `Option<String>` 
 
 Start of the candle range, as a date-time RFC3339 string.
-Must be combined with `to` to define a bounded range.
+Can be combined with `to` to define a bounded range.
     
 </dd>
 </dl>
@@ -843,8 +884,8 @@ Must be combined with `to` to define a bounded range.
 
 **to:** `Option<String>` 
 
-End of the candle range, as a date-time RFC3339 string. Defaults to the current time.
-Must be combined with either `from` (to define a bounded range) or `count` (to return the N most recent candles ending at `to`).
+End of the candle range, as a date-time RFC3339 string. 
+Defaults to the current time.
     
 </dd>
 </dl>
@@ -854,8 +895,8 @@ Must be combined with either `from` (to define a bounded range) or `count` (to r
 
 **count:** `Option<i64>` 
 
-Number of candles to return, ending at `to`.
-Must be combined with `to`.
+Number of candles to return.
+Must be combined with `from` or `to`.
     
 </dd>
 </dl>
@@ -887,7 +928,7 @@ Must be combined with `to`.
 <dl>
 <dd>
 
-Returns price history for one or more tokens.
+Returns price history for one or more tokens or pools.
 </dd>
 </dl>
 </dd>
@@ -917,10 +958,13 @@ async fn main() {
         .dex
         .get_price_history(
             &GetPriceHistoryDexRequest {
-                tokens: vec!["Z4d9YXR4pSkdKcu9UBcwxHp7i32buzdDtAR1b1Gbonk".to_string()],
+                tokens: Some(vec![
+                    "Z4d9YXR4pSkdKcu9UBcwxHp7i32buzdDtAR1b1Gbonk".to_string()
+                ]),
                 from: DateTime::parse_from_rfc3339("2026-04-27T00:00:00Z").unwrap(),
                 to: Some(DateTime::parse_from_rfc3339("2026-04-27T01:00:00Z").unwrap()),
                 interval: 3600,
+                pools: None,
             },
             None,
         )
@@ -940,7 +984,15 @@ async fn main() {
 <dl>
 <dd>
 
-**tokens:** `Vec<String>` — Token addresses to retrieve price history for. Accepts between 1 and 100 tokens per request.
+**tokens:** `Option<Vec<String>>` — Token addresses to retrieve price history for.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**pools:** `Option<Vec<String>>` — Pool addresses to retrieve price history for.
     
 </dd>
 </dl>
@@ -956,7 +1008,10 @@ async fn main() {
 <dl>
 <dd>
 
-**to:** `Option<String>` — End of the history range, as a date-time RFC3339 string. Defaults to the current time.
+**to:** `Option<String>` 
+
+End of the history range, as a date-time RFC3339 string. 
+Defaults to the current time.
     
 </dd>
 </dl>

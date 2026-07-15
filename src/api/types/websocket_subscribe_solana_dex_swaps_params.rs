@@ -8,6 +8,9 @@ pub struct SubscribeSolanaDexSwapsParams {
     /// The token addresses to filter by. Leave empty to subscribe to all tokens.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub token_addresses: Option<Vec<String>>,
+    /// The pool addresses to filter by. Leave empty to subscribe to all pools.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pool_addresses: Option<Vec<String>>,
 }
 
 impl SubscribeSolanaDexSwapsParams {
@@ -21,6 +24,7 @@ impl SubscribeSolanaDexSwapsParams {
 pub struct SubscribeSolanaDexSwapsParamsBuilder {
     wallet_addresses: Option<Vec<String>>,
     token_addresses: Option<Vec<String>>,
+    pool_addresses: Option<Vec<String>>,
 }
 
 impl SubscribeSolanaDexSwapsParamsBuilder {
@@ -34,11 +38,17 @@ impl SubscribeSolanaDexSwapsParamsBuilder {
         self
     }
 
+    pub fn pool_addresses(mut self, value: Vec<String>) -> Self {
+        self.pool_addresses = Some(value);
+        self
+    }
+
     /// Consumes the builder and constructs a [`SubscribeSolanaDexSwapsParams`].
     pub fn build(self) -> Result<SubscribeSolanaDexSwapsParams, BuildError> {
         Ok(SubscribeSolanaDexSwapsParams {
             wallet_addresses: self.wallet_addresses,
             token_addresses: self.token_addresses,
+            pool_addresses: self.pool_addresses,
         })
     }
 }
