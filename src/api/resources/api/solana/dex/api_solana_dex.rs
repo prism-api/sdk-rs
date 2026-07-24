@@ -89,6 +89,44 @@ impl DexClient {
         ).await
     }
 
+    /// Returns a position profile for a specific wallet-token pair.
+    ///
+    /// # Arguments
+    ///
+    /// * `options` - Additional request options such as headers, timeout, etc.
+    ///
+    /// # Returns
+    ///
+    /// JSON response from the API
+    pub async fn get_position_profile(&self, request: &GetPositionProfileDexRequest, options: Option<RequestOptions>) -> Result<SolanaDexPositionProfile, ApiError> {
+        self.http_client.execute_request(
+            Method::POST,
+            "v1/solana/dex/profiles/positions/get-profile",
+            Some(serde_json::to_value(request).map_err(ApiError::Serialization)?),
+            None,
+            options,
+        ).await
+    }
+
+    /// Filter, query, and sort position profiles based on specified metrics and conditions.
+    ///
+    /// # Arguments
+    ///
+    /// * `options` - Additional request options such as headers, timeout, etc.
+    ///
+    /// # Returns
+    ///
+    /// JSON response from the API
+    pub async fn search_position_profiles(&self, request: &SearchPositionProfilesDexRequest, options: Option<RequestOptions>) -> Result<SearchPositionProfilesDexResponse, ApiError> {
+        self.http_client.execute_request(
+            Method::POST,
+            "v1/solana/dex/profiles/positions/search-profiles",
+            Some(serde_json::to_value(request).map_err(ApiError::Serialization)?),
+            None,
+            options,
+        ).await
+    }
+
     /// Returns trades for a combination of wallet, token and/or pool.
     ///
     /// # Arguments

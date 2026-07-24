@@ -442,6 +442,220 @@ async fn main() {
 </dl>
 </details>
 
+<details><summary><code>client.api().solana().dex.<a href="/src/api/resources/api/solana/dex/client.rs">get_position_profile</a>(request: GetPositionProfileDexRequest) -> Result&lt;SolanaDexPositionProfile, ApiError&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a position profile for a specific wallet-token pair.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```rust
+use prism_rs_sdk::prelude::*;
+
+#[tokio::main]
+async fn main() {
+    let config = ClientConfig {
+        api_key: Some("<value>".to_string()),
+        ..Default::default()
+    };
+    let client = Client::new(config).expect("Failed to build client");
+    client
+        .api
+        .solana
+        .dex
+        .get_position_profile(
+            &GetPositionProfileDexRequest {
+                wallet: "suqh5sHtr8HyJ7q8scBimULPkPpA557prMG47xCHQfK".to_string(),
+                token: "Z4d9YXR4pSkdKcu9UBcwxHp7i32buzdDtAR1b1Gbonk".to_string(),
+                options: Some(SolanaDexPositionProfilePayloadOptions {
+                    include_metadata: Some(true),
+                    include_labels: Some(true),
+                    include_metrics: Some(vec![SolanaDexPositionProfileTimeWindowEnum::Window7D]),
+                    ..Default::default()
+                }),
+            },
+            None,
+        )
+        .await;
+}
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**wallet:** `String` — Wallet address of the position to retrieve.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**token:** `String` — Token address of the position to retrieve.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**options:** `Option<SolanaDexPositionProfilePayloadOptions>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.api().solana().dex.<a href="/src/api/resources/api/solana/dex/client.rs">search_position_profiles</a>(request: SearchPositionProfilesDexRequest) -> Result&lt;SearchPositionProfilesDexResponse, ApiError&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Filter, query, and sort position profiles based on specified metrics and conditions.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```rust
+use prism_rs_sdk::prelude::*;
+
+#[tokio::main]
+async fn main() {
+    let config = ClientConfig {
+        api_key: Some("<value>".to_string()),
+        ..Default::default()
+    };
+    let client = Client::new(config).expect("Failed to build client");
+    client
+        .api
+        .solana
+        .dex
+        .search_position_profiles(
+            &SearchPositionProfilesDexRequest {
+                limit: Some(10),
+                sort: Some(SolanaDexProfileSearchPayloadSort {
+                    field: "metrics.7d.pnl".to_string(),
+                    direction: SolanaDexProfileSearchPayloadSortDirectionEnum::Desc,
+                }),
+                dynamic_labels: Some(SolanaDexProfileSearchPayloadDynamicLabels(HashMap::from([
+                    (
+                        "winner".to_string(),
+                        SolanaDexProfileSearchPayloadFilter {
+                            ..Default::default()
+                        },
+                    ),
+                ]))),
+                options: Some(SolanaDexPositionProfilePayloadOptions {
+                    include_metadata: Some(true),
+                    include_labels: Some(true),
+                    include_metrics: Some(vec![SolanaDexPositionProfileTimeWindowEnum::Window7D]),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            None,
+        )
+        .await;
+}
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**filter:** `Option<SolanaDexProfileSearchPayloadFilter>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**sort:** `Option<SolanaDexProfileSearchPayloadSort>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**dynamic_labels:** `Option<SolanaDexProfileSearchPayloadDynamicLabels>` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**options:** `Option<SolanaDexPositionProfilePayloadOptions>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.api().solana().dex.<a href="/src/api/resources/api/solana/dex/client.rs">get_trades</a>(request: GetTradesDexRequest) -> Result&lt;GetTradesDexResponse, ApiError&gt;</code></summary>
 <dl>
 <dd>

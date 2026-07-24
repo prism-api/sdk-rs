@@ -15,6 +15,8 @@ pub enum SubscriptionMessageData {
 
         SolanaDexTokenProfileMessage(SolanaDexTokenProfileMessage),
 
+        SolanaDexPositionProfileMessage(SolanaDexPositionProfileMessage),
+
         SolanaAssetsTransferMessage(SolanaAssetsTransferMessage),
 
         SolanaAssetsBalanceChangeMessage(SolanaAssetsBalanceChangeMessage),
@@ -43,6 +45,10 @@ impl SubscriptionMessageData {
 
     pub fn is_solana_dex_token_profile_message(&self) -> bool {
         matches!(self, Self::SolanaDexTokenProfileMessage(_))
+    }
+
+    pub fn is_solana_dex_position_profile_message(&self) -> bool {
+        matches!(self, Self::SolanaDexPositionProfileMessage(_))
     }
 
     pub fn is_solana_assets_transfer_message(&self) -> bool {
@@ -138,6 +144,20 @@ impl SubscriptionMessageData {
                 }
     }
 
+    pub fn as_solana_dex_position_profile_message(&self) -> Option<&SolanaDexPositionProfileMessage> {
+        match self {
+                    Self::SolanaDexPositionProfileMessage(value) => Some(value),
+                    _ => None,
+                }
+    }
+
+    pub fn into_solana_dex_position_profile_message(self) -> Option<SolanaDexPositionProfileMessage> {
+        match self {
+                    Self::SolanaDexPositionProfileMessage(value) => Some(value),
+                    _ => None,
+                }
+    }
+
     pub fn as_solana_assets_transfer_message(&self) -> Option<&SolanaAssetsTransferMessage> {
         match self {
                     Self::SolanaAssetsTransferMessage(value) => Some(value),
@@ -176,6 +196,7 @@ impl fmt::Display for SubscriptionMessageData {
             Self::SolanaDexPoolMessage(value) => write!(f, "{}", serde_json::to_string(value).unwrap_or_else(|_| format!("{:?}", value))),
             Self::SolanaDexWalletProfileMessage(value) => write!(f, "{}", serde_json::to_string(value).unwrap_or_else(|_| format!("{:?}", value))),
             Self::SolanaDexTokenProfileMessage(value) => write!(f, "{}", serde_json::to_string(value).unwrap_or_else(|_| format!("{:?}", value))),
+            Self::SolanaDexPositionProfileMessage(value) => write!(f, "{}", serde_json::to_string(value).unwrap_or_else(|_| format!("{:?}", value))),
             Self::SolanaAssetsTransferMessage(value) => write!(f, "{}", serde_json::to_string(value).unwrap_or_else(|_| format!("{:?}", value))),
             Self::SolanaAssetsBalanceChangeMessage(value) => write!(f, "{}", serde_json::to_string(value).unwrap_or_else(|_| format!("{:?}", value))),
         }

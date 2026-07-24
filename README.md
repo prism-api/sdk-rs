@@ -32,7 +32,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-prism_rs_sdk = "1.3.5"
+prism_rs_sdk = "1.4.0"
 ```
 
 Or install via cargo:
